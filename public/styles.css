@@ -1,0 +1,126 @@
+.music {
+  width: 100%;
+  height: 100px;
+  background-color: #242423;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#vol {
+  display: flex;
+  transform: rotate(-90deg);
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+  overflow: hidden;
+  width: 70px;
+  outline: none;
+  -webkit-appearance: none;
+  background-color: lightgrey;
+  border-radius: 100px;
+}
+
+#vol::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  background-color: darkgrey;
+  box-shadow: -87px 0 0 80px #74e657;
+}
+
+.cont {
+  height: 50px;
+  width: 50px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: #242423;
+  font-size: 30px;
+
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+#mute {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  outline: none;
+  border: none;
+  color: #ffffff;
+  background-color: #242423;
+  font-size: 20px;
+  bottom: 25px;
+  left: 70px;
+}
+
+#seek {
+  position: absolute;
+  -webkit-appearance: none;
+  outline: none;
+  overflow: hidden;
+  bottom: 20px;
+  width: 600px;
+  height: 10px;
+  border-radius: 100px;
+}
+
+#seek::-webkit-slider-thumb {
+  overflow: hidden;
+  border-radius: 100px;
+  height: 500px;
+  width: 500px;
+  background-color: darkgrey;
+  box-shadow: -505px 0 0 500px #74e657;
+}
+
+.mybtnclass {
+  background-color: #ffffff;
+  color: #242424;
+  outline: none;
+  border-top-style: solid;
+  border-bottom-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  height: 50px;
+  width: 300px;
+  font-size: 20px;
+  font-family: "Lato", sans-serif;
+  border-top-color: aliceblue;
+  border-bottom-color: aliceblue;
+}
+body {
+  background-color: #242423;
+}
+#view {
+  border-style: solid;
+  border-color: aliceblue;
+  overflow-x: auto;
+  justify-content: center;
+}
+
+#headers {
+  display: flex;
+
+  border-style: solid;
+  border-color: aliceblue;
+  border-bottom-style: none;
+  justify-content: space-around;
+  width: 905px;
+  color: aliceblue;
+  font-family: "Lato", sans-serif;
+  font-size: 30px;
+}
+
+#table1 {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+@media all(max-width: 943px) {
+  #headers {
+    list-style-type: none;
+  }
+}

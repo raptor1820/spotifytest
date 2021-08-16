@@ -1,0 +1,206 @@
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    </head>
+    <body>
+     <a href="/logout"> <button >Logout</button></a>
+        <div id="main2">
+        <audio  id="Aplayer"   src="assets/BUTTERFLYEFFECT.mp3"></audio>
+        <center><table id="table1" >
+        <tr id="headers">
+        
+            <td>Song</td>
+            <td>Artist</td>
+            <td>Album</td>
+        
+        </tr> 
+        </table>
+        <table id="view">
+       
+           
+        </table>
+    </center>
+    </div>
+        <div class="music" id="main"> 
+            <input type="range" min="0" id="vol" max="100" onclick="changevol()" onchange="setInterval(changevol,200)" ></input>
+            <button id="mute" onclick="muter()"><i id="muteicon" class="fas fa-volume-up" aria-hidden="true"></i></button>
+            <button class="cont" onclick="lastone();setTimeout(rangeUpdate,100)"><i class="fas fa-step-backward" aria-hidden="true"></i></button>
+            <button class="cont" onclick="playnow();setInterval(changeseek,1000)"><i id="playpauseicon" class="fas fa-play" aria-hidden="true" ></i></button>
+            <button class="cont" onclick="nextone();setTimeout(rangeUpdate,100)"><i class="fas fa-step-forward" aria-hidden="true"></i></button>
+            <input id="seek" value=0 min="0" max="190" type="range" onchange="seektrack()"></input>
+        </div>
+    </body>
+    <script>
+        var songarr = [
+  "assets/BUTTERFLYEFFECT.mp3",
+  "assets/Godzilla.mp3",
+  "assets/Righteous.mp3",
+  "assets/ToosieSlide.mp3",
+  "assets/WishingWell.mp3",
+  "assets/LuckyYou.mp3",
+  "assets/POPSTAR.mp3",
+  "assets/WHATSPOPPIN.mp3",
+  "assets/WRONG.mp3",
+  "assets/UpUpAndAway.mp3",
+];
+var songnames = [
+  "Butterfly Effect",
+  "Godzilla",
+  "Righteous",
+  "Toosie Slide",
+  "Wishing Well",
+  "Lucky You",
+  "POPSTAR",
+  "WHATS POPPIN",
+  "WRONG",
+  "UP UP AND AWAY",
+];
+var songinfo = [
+  "Travis Scott",
+  "Eminem",
+  "Juice Wrld",
+  "Drake",
+  "Juice Wrld",
+  "Eminem ft.Joyner Lucas",
+  "DJ Khaled ft.Drake",
+  "Jack Harlow",
+  "The Kid Laroi",
+  "Juice Wrld",
+];
+var songalbum = [
+  "ASTROWORLD",
+  "Music to be Murdered By",
+  "Legends Never Die",
+  "Dark Lane Demo Tapes",
+  "Legends Never Die",
+  "Kamikaze",
+  "POPSTAR",
+  "Sweet Action",
+  "F*CK LOVE",
+  "Legends Never Die",
+];
+var i = 0;
+var vol = 50;
+var x = 0;
+songnames.forEach(function (item, index) {
+  let newbtn = document.createElement("button");
+  let newbtn2 = document.createElement("button");
+  let newbtn3 = document.createElement("button");
+  let myattr = document.createAttribute("class");
+  let myattr2 = document.createAttribute("class");
+  let myattr3 = document.createAttribute("class");
+  let newrow = document.createElement("tr");
+  let newtd = document.createElement("td");
+  let inner = document.createTextNode(item);
+  let inner2 = document.createTextNode(songinfo[x]);
+  let inner3 = document.createTextNode(songalbum[x]);
+  myattr.value = "mybtnclass";
+  myattr2.value = "mybtnclass";
+  myattr3.value = "mybtnclass";
+  newbtn.setAttributeNode(myattr);
+  newbtn.appendChild(inner);
+  newbtn2.setAttributeNode(myattr2);
+  newbtn2.appendChild(inner2);
+  newbtn3.setAttributeNode(myattr3);
+  newbtn3.appendChild(inner3);
+  newrow.appendChild(newtd);
+  newtd.appendChild(newbtn);
+  newtd.appendChild(newbtn2);
+  newtd.appendChild(newbtn3);
+  document.getElementById("view").appendChild(newrow);
+  x++;
+});
+function playnow() {
+  if (document.getElementById("Aplayer").paused == true) {
+    document.getElementById("playpauseicon").className = "fas fa-pause";
+    document.getElementById("Aplayer").play();
+  } else {
+    document.getElementById("playpauseicon").className = "fas fa-play";
+    document.getElementById("Aplayer").pause();
+  }
+}
+
+function nextone() {
+  if (i >= songarr.length - 1) {
+    i = 0;
+  } else {
+    i++;
+  }
+  document.getElementById("Aplayer").src = songarr[i];
+  document.getElementById("playpauseicon").className = "fas fa-pause";
+
+  document.getElementById("Aplayer").play();
+}
+function lastone() {
+  if (i == 0) {
+    i = songarr.length - 1;
+  } else {
+    i--;
+  }
+  document.getElementById("Aplayer").src = songarr[i];
+  document.getElementById("playpauseicon").className = "fas fa-pause";
+
+  document.getElementById("Aplayer").play();
+}
+let mutestate = false;
+function changevol() {
+  document.getElementById("Aplayer").volume =
+    document.getElementById("vol").value / 100;
+  if (document.getElementById("Aplayer").volume != 0) {
+    document.getElementById("muteicon").className = "fas fa-volume-up";
+    mutestate = false;
+  } else {
+    document.getElementById("muteicon").className = "fas fa-volume-mute";
+    mutestate = true;
+  }
+}
+
+function muter() {
+  if (mutestate == false) {
+    document.getElementById("muteicon").className = "fas fa-volume-mute";
+    document.getElementById("vol").value = 0;
+    document.getElementById("Aplayer").volume = 0;
+    mutestate = true;
+  } else {
+    document.getElementById("Aplayer").volume = 0.5;
+    document.getElementById("muteicon").className = "fas fa-volume-up";
+    mutestate = false;
+    document.getElementById("vol").value = 50;
+  }
+}
+
+function seektrack() {
+  document.getElementById("Aplayer").currentTime = document.getElementById(
+    "seek"
+  ).value;
+}
+
+function changeseek() {
+  document.getElementById("seek").value = document.getElementById(
+    "Aplayer"
+  ).currentTime;
+}
+
+function rangeUpdate() {
+  document.getElementById("seek").max = Math.floor(
+    document.getElementById("Aplayer").duration
+  );
+}
+
+function autochange() {
+  if (
+    Math.floor(document.getElementById("Aplayer").duration) ==
+    Math.floor(document.getElementById("Aplayer").currentTime)
+  ) {
+    nextone();
+    setTimeout(rangeUpdate, 100);
+  }
+}
+setInterval(autochange, 100);
+setInterval(rangeUpdate, 100);
+
+    </script>
+</html>
